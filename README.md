@@ -24,4 +24,4 @@ Its quiet easy if you already have a Website where you can run the gallery and c
 Dedicated Mail Account to retrieve the Images. 
 
 # Cronjob
-The "mail2dropbox.php" should be executed via Cronjob to import the mails on a frequent basis
+The "mail2dropbox.php" should be executed via Cronjob to import the mails on a frequent basis. It also does the housekeeping and moves old items to a different folder.
