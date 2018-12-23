@@ -13,7 +13,7 @@ I havent found any App in the AppStore that could provide such a functionality. 
 # Advantages of the Solution
 * You can update the pictures using Dropbox. 
 * Also your family can send pictures by email to a dedicated adress. 
-* No reason to update the images directly on the iPad. The galery is auto refreshing
+* No reason to update the images on the iPad. The galery is auto refreshing so my grandparents do not need to press any button.
 
 # Technical Requirements
 Its quiet easy if you already have a Website where you can run the gallery and create mail accounts
