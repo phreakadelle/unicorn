@@ -4,6 +4,8 @@ A Dropbox gallery for your website.
 More information can be obtained here:
 * https://github.com/unicorn-gallery/unicorn
 
+Follow those instructions to setup the galery.
+
 
 # Digital Photoframe
 I've forked the unicorn repository in order to create a digital photoframe / digitaler bilderrahmen (de). My requirement was to be able to send photos by email and get them imported into the galery. The story behind that is that i would like to give my family the chance to also send pictures by mail to the galery. The Galery is displayed on an old Tablet / iPad which i would like to give to my grandparents as a christmas present.
