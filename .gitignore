@@ -10,3 +10,4 @@ config.php
 !/data/.gitignore
 /tokens/*
 /.idea
+rotate.php
