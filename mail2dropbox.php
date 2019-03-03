@@ -196,7 +196,7 @@ if ($emails) {
             //print_r($overview);
         }
         
-        //imap_delete($inbox, $email_number);
+        imap_delete($inbox, $email_number);
         imap_expunge($inbox);
     }
 }
