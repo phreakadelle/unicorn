@@ -11,3 +11,4 @@ config.php
 /tokens/*
 /.idea
 rotate.php
+subject.txt

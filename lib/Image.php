@@ -25,7 +25,15 @@ class Image
         $quality = 80
     ) {
         $extension = strtolower(strrchr($originalImage, '.'));
-
+		
+		$thumbsPath = dirname($originalImage) . "/" . $thumbDir . "/";
+        @mkdir($thumbsPath); // Create thumbnail directory if not existent.
+		$filename = $thumbsPath . basename($originalImage);
+		
+		if(file_exists($filename)) {
+			return;	
+		}
+		
         switch ($extension) {
             case '.jpg':
             case '.jpeg':
@@ -42,10 +50,9 @@ class Image
                 break;
         }
 
-        $thumbsPath = dirname($originalImage) . "/" . $thumbDir . "/";
-        @mkdir($thumbsPath); // Create thumbnail directory if not existent.
+        
 
-        $filename = $thumbsPath . basename($originalImage);
+        
 
         $width = imagesx($image);
         $height = imagesy($image);

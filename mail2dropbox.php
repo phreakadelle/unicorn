@@ -9,16 +9,14 @@ use Kunnu\Dropbox\Dropbox as BaseDropbox;
 use Kunnu\Dropbox\DropboxFile as DropboxFile;
 
 
-function isVideo($pFilename) {
+function isIgnoreFileFormat($pFilename, $pFormats) {
     if(strlen($pFilename) == 0) {
         return false;
     }
     
-    $formats = array("avi", "mpg", "mpeg", "mov");
-    
     $retVal = false;
-    foreach($formats as $currentFormat) {
-        if($strpos($pFilenmae, ".".$currentFormat)) {
+    foreach($pFormats as $currentFormat) {
+        if(strpos($pFilename, ".".$currentFormat) > 0) {
             $retVal = true;
         }
     }
@@ -95,9 +93,9 @@ if ($emails) {
         
         if (count($attachments) != 0) {
             foreach ($attachments as $at) {
-                if (isVideo($at['attachment'])) {
+                if (isIgnoreFileFormat($at['name'], Config::read('mail_image_ignore_fileformats'))) {
                     $retVal['debug'][] = "Ignore Video Attachment ".$at['filename'];
-                } else ($at['is_attachment'] == 1) {
+                } elseif ($at['is_attachment'] == 1) {
                     file_put_contents($at['filename'], $at['attachment']);
                     
                     // Fix Image Rotation Start
@@ -157,6 +155,11 @@ if ($emails) {
                     for($i = 0; $i < (count($cache) - Config::read('image_cache')); $i++) {
                         
                         $item = array_values($cache)[$i];
+						if(is_dir(Config::read('mail_image_directory_archive'))) {
+							$retVal['cleanup'][] = "Create Archive Directory". Config::read('mail_image_directory_archive');
+							
+							mkdir(Config::read('mail_image_directory_archive'));
+						}
                         $destination = Config::read('mail_image_directory_archive').$item;
                         
                         try {
@@ -190,10 +193,10 @@ if ($emails) {
             $retVal['messages'][] = $subject;
             //$retVal['debug'][] = $overview[0];
         } else {
-            print_r($overview);
+            //print_r($overview);
         }
         
-        imap_delete($inbox, $email_number);
+        //imap_delete($inbox, $email_number);
         imap_expunge($inbox);
     }
 }
@@ -213,7 +216,9 @@ if ($emails && !isset($_GET['skipupdate'])) {
     );
     $context = stream_context_create($options);
     try {
-        $result = @file_get_contents(Config::read('admin_url'), false, $context);
+		$cache = new Cache();
+		$cache->refresh(true);
+        //$result = @file_get_contents(Config::read('admin_url'), false, $context);
     } catch(Exception $e) {
         $retVal['debug'][] = "failed to update gallery";
     }

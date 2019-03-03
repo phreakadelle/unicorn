@@ -25,8 +25,13 @@ Config::write("mail_host", "{xxxxxxxxxxxxxxx:993/imap/ssl}INBOX");
 Config::write("mail_user", "xxxxxxxxxxxxxxx");
 Config::write("mail_password", "xxxxxxxxxxxxxxx");
 Config::write("image_cache", "20");
+Config::write("image_locale", "de_DE");
+Config::write("image_message_age", "2"); // message age in days
+Config::write("image_subject_file", "subject.txt"); // file that stores the mail subjects
+Config::write("image_known_senders", array( "Name <foo@bar.com>" => "Name")); // known senders
 Config::write("mail_image_directory_current", "/mails/");
 Config::write("mail_image_directory_archive", "/mails-archive/");
+Config::write("mail_image_ignore_fileformats", array("avi", "mpg", "mpeg", "mov")
 
 // To ensure we don't attempt to obtain an access token for each user request, we must store it
 // inside a directory.
