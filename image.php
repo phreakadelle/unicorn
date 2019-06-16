@@ -74,6 +74,7 @@ if(file_exists(Config::read("image_subject_file"))) {
 	fclose($file);
 }
 
+$nextURL = Config::read("site_url") . "?current=" . $next;
 
 ?>
 
@@ -81,11 +82,16 @@ if(file_exists(Config::read("image_subject_file"))) {
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="<?php echo Config::read("image_refresh")?>; url=<?php echo Config::read("site_url")?>?current=<?php echo $next;?>" />
+<meta http-equiv="refresh" content="<?php echo Config::read("image_refresh")?>; url=<?php echo $nextURL;?>" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title><?php echo Config::read("gallery_name")?></title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 <style>
+html,body{
+    margin:0;
+    height:100%;
+}
+
 body {background-color: black;}
 #fixed-div {    position: fixed;    top: 1em;    right: 1em; }
 
@@ -107,6 +113,12 @@ body {background-color: black;}
 .marquee > span:nth-child(1) {
     animation:  20s linear 0s infinite push;
 }
+
+img{
+  display:block;
+  width:100%; height:100%;
+  object-fit: scale-down;
+}
 </style>
 
 </head>
@@ -120,10 +132,13 @@ body {background-color: black;}
 <?php } ?>
 
 <?php
-echo "<img src=\"".$theImage."\" width=\"100%\"/>";
+echo "<a href=\"".$nextURL."\">";
+echo "<img src=\"".$theImage."\" /></a>";
 ?>
 
-
+<!--
+<?php print_r($files);?>
+-->
 </body>
 
 </html>

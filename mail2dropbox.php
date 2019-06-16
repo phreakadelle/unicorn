@@ -205,7 +205,7 @@ if ($emails) {
 imap_close($inbox);
 
 // skipupdate only for testing
-if ($emails && !isset($_GET['skipupdate'])) {
+if (($emails && !isset($_GET['skipupdate']))  || isset($_GET['forceupdate'])) {
     // Trigger the Import in the Gallery
     $retVal['message'] = "Trigger Gallery Refresh.";
     $options = array(
