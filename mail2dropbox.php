@@ -217,7 +217,7 @@ if (($emails && !isset($_GET['skipupdate']))  || isset($_GET['forceupdate'])) {
     $context = stream_context_create($options);
     try {
 		$cache = new Cache();
-		$cache->refresh(true);
+		$cache->refresh(true, true);
         //$result = @file_get_contents(Config::read('admin_url'), false, $context);
     } catch(Exception $e) {
         $retVal['debug'][] = "failed to update gallery";
