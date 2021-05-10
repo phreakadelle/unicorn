@@ -8,15 +8,15 @@
         {
             "name": "Mattias Endler",
             "email": "matthias-endler@gmx.net",
-            "homepage": "http://www.matthias-endler.de"
+            "homepage": "https://endler.dev"
         }
     ],
     "require": {
         "php": ">=5.6.0",
         "monolog/monolog": "~1.6",
-        "slim/slim": "~2.3",
+        "slim/slim": "~4.3",
         "slim/views": "0.*",
-        "twig/twig": "~1.13",
+        "twig/twig": "~2.12",
         "kunalvarma05/dropbox-php-sdk": "^0.2.1",
         "ext-gd": "*"
     },
